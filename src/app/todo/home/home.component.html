@@ -1,0 +1,63 @@
+<div class="text-center justify-center items-center h-screen" style="background-color: rgb(209, 209, 244);">
+  <app-header></app-header>
+
+  <div class="m-auto w-11/12 md:w-4/5 bg-white flex flex-col md:flex-row overflow-y-auto h-4/5 rounded-lg">
+    <div class="flex flex-col w-full p-4">
+      <h2 class="text-2xl font-bold mb-4">To-Do List</h2>
+
+      <div class="mb-4 flex justify-between items-center">
+        <div>
+          <label for="filter" class="mr-2">Filter:</label>
+          <select id="filter" class="p-2 border rounded" (change)="onFilterChange($event)">
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+            <option value="pending">Pending</option>
+          </select>
+        </div>
+        
+        <button class="bg-[rgb(124,63,223)] text-white px-4 py-2 rounded" (click)="addNewTask()">Add Task</button>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-white">
+          <thead>
+            <tr class="bg-gray-800 text-white">
+              <th class="w-2/12 px-4 py-2">Title</th>
+              <th class="w-3/12 px-4 py-2">Description</th>
+              <th class="w-2/12 px-4 py-2">Due Date</th>
+              <th class="w-1/12 px-4 py-2">Priority</th>
+              <th class="w-1/12 px-4 py-2">Status</th>
+              <th class="w-2/12 px-4 py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-gray-100 text-gray-700" *ngFor="let item of taskList">
+              <td class="border px-4 py-2">{{item.title}}</td>
+              <td class="border px-4 py-2">{{item.desc}}</td>
+              <td class="border px-4 py-2">{{item.due_date | customDate}}</td>
+              <td class="border px-4 py-2">
+                <nav class="new_status" [ngClass]="getPriorityClass(item.priority)">
+                  {{item.priority}}
+                </nav>
+              </td>
+              <td class="border px-4 py-2">
+                <nav class="new_status" [ngClass]="getStatusClass(item.status)">
+                  {{item.status}}
+                </nav>  
+              </td>
+              <td class="border px-4 py-2">
+                <button mat-icon-button class="blue-icon" (click)="edit(item)"><mat-icon style="margin-bottom: 3px;">edit</mat-icon></button>
+                <button mat-icon-button style="color: red;" (click)="delete(item)"><mat-icon style="margin-bottom: 3px;">delete</mat-icon></button>
+              </td>
+            </tr>
+            <tr *ngIf="(taskList?.length || 0) == 0">
+              <td colspan="6" class="text-center py-4">No tasks found</td>
+            </tr>            
+            
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </div>
+</div>

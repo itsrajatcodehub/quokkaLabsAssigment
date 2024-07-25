@@ -1,0 +1,41 @@
+.mat-mdc-form-field-error {
+    margin-left: -18px !important;
+}
+
+textarea[matInput] {
+    height: 100px !important;
+}
+
+.priority-list {
+    margin-top: 10px;
+}
+
+.priority-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.mat-option {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+.color-indicator {
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+    display: inline-block !important;
+}
+
+
+::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
+    width: inherit !important;
+}

@@ -1,0 +1,25 @@
+<mat-toolbar class="heading">
+    <div class="flex flex-1 items-center justify-between">
+      <div class="flex items-center">
+        <img src="assets/quokka-labs.webp" alt="Your Company" class="h-8 w-auto">
+        <div class="hidden sm:block sm:ml-6">
+        </div>
+      </div>
+      <div>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>person</mat-icon>
+            <span>{{ person }}</span>
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Sign out</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </mat-toolbar>
+  

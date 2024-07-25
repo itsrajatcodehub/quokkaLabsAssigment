@@ -1,0 +1,45 @@
+<div class="flex justify-center items-center h-screen" style="background-color: rgb(209, 209, 244);">
+    <div class="w-11/12 md:w-3/5 bg-white flex flex-col md:flex-row overflow-y-auto h-4/5 rounded-lg">
+
+        <div class="w-full md:w-1/2 p-6">
+            <div class="my-8 text-center text-4xl">
+                <h1>Sign In</h1>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="example-container">
+                    <span>Email ID</span>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput placeholder="Enter your email" formControlName="email">
+                        <mat-error *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched">
+                            Please enter a valid email.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="example-container">
+                    <span>Password</span>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+                            formControlName="password">
+                        <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+                            Please enter your password.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <button type="submit" class="bg-[#7F6DF2] text-white p-2 rounded w-full mt-5 cursor-pointer"
+                    [disabled]="loginForm.invalid">Login</button>
+            </form>
+            <div class="my-2">Don't have an account? <u class="cursor-pointer" routerLink="/register">Signup</u></div>
+        </div>
+
+
+        <div class="w-full md:w-1/2 flex justify-center items-center hidden md:flex">
+            <img src="assets/login.png" alt="Placeholder Image" class="max-w-full h-full object-cover">
+        </div>
+    </div>
+</div>

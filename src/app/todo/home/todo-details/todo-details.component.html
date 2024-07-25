@@ -1,0 +1,87 @@
+<div class="justify-center items-center p-8">
+    <h2 class="text-2xl font-bold mb-4 text-center">{{selectedAction + ' Task'}}</h2>
+
+    <div class="addtask">
+        <form [formGroup]="addTaskForm" (ngSubmit)="onSubmit()">
+            <div class="example-container">
+                <div class="flex">
+                    <div class="w-full md:w-1/2 pr-2">
+                        <span>Title : </span>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input matInput placeholder="Ex. Exercise" formControlName="title">
+                            <mat-error *ngIf="addTaskForm.get('title').invalid || addTaskForm.get('title').touched">
+                                Please enter your title.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="w-full md:w-1/2 pr-2">
+                        <span>Status : </span>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-select formControlName="status" placeholder="Select Status">
+                                <mat-option *ngFor="let status of statuses" [value]="status.value" class="w-full">
+                                    <span class="flex justify-between items-center w-full">
+                                        <span>{{ status.viewValue }}</span>
+                                        <span class="color-indicator ml-2"
+                                            [style.background-color]="status.color"></span>
+                                    </span>
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="addTaskForm.get('status').invalid || addTaskForm.get('status').touched">
+                                Please select your status.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-container">
+                <span>Description : </span>
+                <mat-form-field appearance="outline" class="w-full">
+                    <textarea matInput placeholder="Ex. Today I'm going to do..." formControlName="desc"></textarea>
+                </mat-form-field>
+            </div>
+
+            <div class="example-container">
+                <div class="flex">
+                    <div class="w-full md:w-1/2 pr-2">
+                        <span>Due Date : </span>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input matInput [matDatepicker]="picker" placeholder="Select Due Date"
+                                formControlName="due_date" [min]="tomorrow" />
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error
+                                *ngIf="addTaskForm.get('due_date').invalid || addTaskForm.get('due_date').touched">
+                                Please select the Due Date.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="w-full md:w-1/2 pl-2">
+                        <span>Priority :</span>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-select formControlName="priority" placeholder="Select Priority">
+                                <mat-option *ngFor="let priority of priorities" [value]="priority.value" class="w-full">
+                                    <span class="flex justify-between items-center w-full">
+                                        <span>{{ priority.viewValue }}</span>
+                                        <span class="color-indicator ml-2"
+                                            [style.background-color]="priority.color"></span>
+                                    </span>
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="addTaskForm.get('priority').invalid || addTaskForm.get('priority').touched">
+                                Please select your priority.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+            </div>
+            <button type="submit"
+                class="bg-[#7F6DF2] text-white p-2 rounded w-full mt-5 cursor-pointer">{{selectedAction + '
+                Task'}}</button>
+        </form>
+    </div>
+
+</div>

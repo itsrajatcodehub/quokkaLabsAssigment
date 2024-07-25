@@ -1,0 +1,54 @@
+.new_status {
+    border-radius: 8px;
+    padding: 0 7px;
+    color: #fff;
+    display: inline-block;
+  }
+  
+  .priority-low {
+    background-color: green;
+  }
+  
+  .priority-average {
+    background-color: orange;
+  }
+  
+  .priority-high {
+    background-color: red;
+  }
+  
+  .status-pending {
+    background-color: orange;
+  }
+  
+  .status-completed {
+    background-color: green;
+  }
+  
+  .overflow-x-auto {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .min-w-full {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .min-w-full th,
+  .min-w-full td {
+    max-width: 200px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid #dddddd;
+  }
+
+  .min-w-full thead {
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 10;
+  }
