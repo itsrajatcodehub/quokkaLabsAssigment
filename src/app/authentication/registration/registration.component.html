@@ -1,66 +1,65 @@
 <div class="flex justify-center items-center h-screen" style="background-color: rgb(209, 209, 244);">
-    <div class="w-11/12 md:w-3/5 bg-white flex flex-col md:flex-row overflow-y-auto h-max rounded-lg">
-      <div class="w-full md:w-1/2 p-6">
-        <div class="my-0 text-center text-4xl">
-          <h1>Sign Up</h1>
+  <div class="w-11/12 md:w-3/5 bg-white flex flex-col md:flex-row overflow-y-auto h-auto max-h-screen rounded-lg">
+    <div class="w-full md:w-1/2 p-6 flex flex-col">
+      <div class="my-0 text-center text-4xl">
+        <h1>Sign Up</h1>
+      </div>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="flex-grow overflow-y-auto">
+        <div class="example-container">
+          <span>Name</span>
+          <mat-form-field appearance="outline" class="w-full">
+            <input matInput placeholder="Enter your Name" formControlName="name">
+            <mat-error *ngIf="signupForm.get('name').invalid && signupForm.get('name').touched">
+              Please enter your name.
+            </mat-error>
+          </mat-form-field>
         </div>
-        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-          <div class="example-container">
-            <span>Name</span>
-            <mat-form-field appearance="outline" class="w-full">
-              <input matInput placeholder="Enter your Name" formControlName="name">
-              <mat-error *ngIf="signupForm.get('name').invalid && signupForm.get('name').touched">
-                Please enter your name.
-              </mat-error>
-            </mat-form-field>
-          </div>
-  
-          <div class="example-container">
-            <span>Email ID</span>
-            <mat-form-field appearance="outline" class="w-full">
-              <input matInput placeholder="Enter your email" formControlName="email">
-              <mat-error *ngIf="signupForm.get('email').invalid && signupForm.get('email').touched">
-                Please enter a valid email.
-              </mat-error>
-            </mat-form-field>
-          </div>
-  
-          <div class="example-container">
-            <span>Password</span>
-            <mat-form-field appearance="outline" class="w-full">
-              <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" formControlName="password">
-              <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
-                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
-                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </button>
-              <mat-error *ngIf="signupForm.get('password').invalid && signupForm.get('password').touched">
-                Please enter your password.
-              </mat-error>
-            </mat-form-field>
-          </div>
-  
-          <div class="example-container">
-            <span>Confirm Password</span>
-            <mat-form-field appearance="outline" class="w-full">
-              <input matInput placeholder="Confirm your password" [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword">
-              <button type="button" mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword"
-                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPassword">
-                <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </button>
-              <mat-error *ngIf="signupForm.get('confirmPassword').hasError('mustMatch') && signupForm.get('confirmPassword').touched">
-                Passwords do not match.
-              </mat-error>
-            </mat-form-field>
-          </div>
-  
-          <button type="submit" class="bg-[#7F6DF2] text-white p-2 rounded w-full mt-5 cursor-pointer" [disabled]="signupForm.invalid">Register</button>
-        </form>
-        <div class="my-2">Already have an account? <u class="cursor-pointer" routerLink="/login">Login</u></div>
-      </div>
-  
-      <div class="w-full md:w-1/2 flex justify-center items-center hidden md:flex">
-        <img src="assets/login.png" alt="Placeholder Image" class="max-w-full h-full object-cover">
-      </div>
+
+        <div class="example-container">
+          <span>Email ID</span>
+          <mat-form-field appearance="outline" class="w-full">
+            <input matInput placeholder="Enter your email" formControlName="email">
+            <mat-error *ngIf="signupForm.get('email').invalid && signupForm.get('email').touched">
+              Please enter a valid email.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="example-container">
+          <span>Password</span>
+          <mat-form-field appearance="outline" class="w-full">
+            <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+            <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="signupForm.get('password').invalid && signupForm.get('password').touched">
+              Please enter your password.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="example-container">
+          <span>Confirm Password</span>
+          <mat-form-field appearance="outline" class="w-full">
+            <input matInput placeholder="Confirm your password" [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword">
+            <button type="button" mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword"
+              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPassword">
+              <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="signupForm.get('confirmPassword').hasError('mustMatch') && signupForm.get('confirmPassword').touched">
+              Passwords do not match.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <button type="submit" class="bg-[#7F6DF2] text-white p-2 rounded w-full mt-5 cursor-pointer" [disabled]="signupForm.invalid">Register</button>
+      </form>
+      <div class="my-2">Already have an account? <u class="cursor-pointer" routerLink="/login">Login</u></div>
+    </div>
+
+    <div class="w-full md:w-1/2 flex justify-center items-center hidden md:flex">
+      <img src="assets/login.png" alt="Placeholder Image" class="max-w-full h-full object-cover">
     </div>
   </div>
-  
+</div>
